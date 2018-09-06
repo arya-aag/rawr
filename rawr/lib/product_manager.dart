@@ -5,7 +5,7 @@ import './products.dart';
 class ProductManager extends StatefulWidget {
   final List<String> initialProducts;
 
-  ProductManager({this.initialProducts}) {
+  ProductManager({this.initialProducts = const ['Default product']}) {
     // print('ProductManagerWidget constr');
   }
 
