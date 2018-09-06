@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
           appBar: AppBar(
             title: Text('Rawr'),
           ),
-          body: ProductManager(['First Product'])),
+          body: ProductManager(initialProducts: ['First Product'])),
     );
   }
 }
