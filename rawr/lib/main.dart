@@ -1,20 +1,30 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/rendering.dart';
 
 import './product_manager.dart';
 
-void main(List<String> args) => runApp(MainApp());
+void main() {
+  // debugPaintSizeEnabled = true;
+  // debugPaintBaselinesEnabled = true;
+  // debugPaintPointersEnabled = true;
+  runApp(MyApp());
+}
 
-class MainApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // debugShowMaterialGrid: true,
       theme: ThemeData(
-          primarySwatch: Colors.deepPurple, accentColor: Colors.amberAccent),
+          brightness: Brightness.light,
+          primarySwatch: Colors.deepOrange,
+          accentColor: Colors.deepPurple),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Rawr'),
-          ),
-          body: ProductManager(initialProducts: ['First Product'])),
+        appBar: AppBar(
+          title: Text('EasyList'),
+        ),
+        body: ProductManager(startingProduct: 'Food Tester'),
+      ),
     );
   }
 }

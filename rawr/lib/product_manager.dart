@@ -1,55 +1,55 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './product_control.dart';
 
 class ProductManager extends StatefulWidget {
-  final List<String> initialProducts;
+  final String startingProduct;
 
-  ProductManager({this.initialProducts = const ['Default product']}) {
-    // print('ProductManagerWidget constr');
+  ProductManager({this.startingProduct = 'Sweets Tester'}) {
+    print('[ProductManager Widget] Constructor');
   }
 
   @override
   State<StatefulWidget> createState() {
-    // print('ProductManagerWidget createState');
+    print('[ProductManager Widget] createState()');
     return _ProductManagerState();
   }
 }
 
 class _ProductManagerState extends State<ProductManager> {
-  List<String> _products;
+  List<String> _products = [];
 
   @override
   void initState() {
+    print('[ProductManager State] initState()');
+    _products.add(widget.startingProduct);
     super.initState();
-    // print('ProductManagerWidget initState');
-    _products = widget.initialProducts;
   }
 
   @override
   void didUpdateWidget(ProductManager oldWidget) {
+    print('[ProductManager State] didUpdateWidget()');
     super.didUpdateWidget(oldWidget);
-    // print('ProductManagerWidget didUpdateWidget');
+  }
+
+  void _addProduct(String product) {
+    setState(() {
+      _products.add(product);
+    });
+    print(_products);
   }
 
   @override
   Widget build(BuildContext context) {
-    // print('ProductManagerWidget build');
+    print('[ProductManager State] build()');
     return Column(
-      children: <Widget>[
+      children: [
         Container(
           margin: EdgeInsets.all(10.0),
-          child: MaterialButton(
-            color: Theme.of(context).accentColor,
-            onPressed: () {
-              setState(() {
-                _products.add('Advanced Awesomeness');
-              });
-            },
-            child: Text('Add Product'),
-          ),
+          child: ProductControl(_addProduct),
         ),
-        Products(_products)
+        Expanded(child: Products(_products))
       ],
     );
   }

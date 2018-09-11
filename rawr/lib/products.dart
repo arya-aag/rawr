@@ -4,22 +4,25 @@ class Products extends StatelessWidget {
   final List<String> products;
 
   Products([this.products = const []]) {
-    // print('ProductsWidget construtor');
+    print('[Products Widget] Constructor');
   }
 
   @override
   Widget build(BuildContext context) {
-    // print('ProductsWidget build');
-    return Column(
-        children: products
-            .map((element) => Card(
+    print('[Products Widget] build()');
+    return ListView(
+      children: products
+          .map(
+            (element) => Card(
                   child: Column(
                     children: <Widget>[
                       Image.asset('assets/food.jpg'),
                       Text(element)
                     ],
                   ),
-                ))
-            .toList());
+                ),
+          )
+          .toList(),
+    );
   }
 }
