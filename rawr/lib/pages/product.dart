@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
@@ -7,17 +8,25 @@ class ProductPage extends StatelessWidget {
   ProductPage(this.title, this.imagePath);
 
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(imagePath),
-          Text(title),
-          RaisedButton(
-              child: Text('Return to Home'),
-              onPressed: () => Navigator.pop(context)),
-        ],
+    return WillPopScope(
+      onWillPop: () {
+        Navigator.pop(context, 0);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text(title)),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(imagePath),
+            Text(title),
+            RaisedButton(
+              child: Text('Delete'),
+              color: Colors.redAccent,
+              onPressed: () => Navigator.pop(context, 1),
+            ),
+          ],
+        ),
       ),
     );
   }
